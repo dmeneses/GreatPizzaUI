@@ -6,13 +6,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
 import { PizzaComponent } from './pizza/pizza.component';
+import { ToppingComponent } from './topping/topping.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductComponent,
-    PizzaComponent
+    PizzaComponent,
+    ToppingComponent
   ],
   imports: [
     BrowserModule,

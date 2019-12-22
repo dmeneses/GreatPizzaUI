@@ -1,6 +1,6 @@
 import { Product } from './product.model';
 
-export class Pizza extends Product {
+export class Topping extends Product {
   _id?: string;
   name: string;
   shortDescription: string;

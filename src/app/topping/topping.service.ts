@@ -3,17 +3,17 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { Pizza } from '../shared/models/pizza.model';
+import { Topping } from '../shared/models/topping.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PizzaService {
+export class ToppingService {
 
-  private path = '/api/pizzas';
+  private path = '/api/toppings';
   constructor(private http: HttpClient) { }
 
-  getPizzas(): Observable<Pizza[]> {
-    return this.http.get<Pizza[]>(this.path);
+  getToppings(): Observable<Topping[]> {
+    return this.http.get<Topping[]>(this.path);
   }
 }
