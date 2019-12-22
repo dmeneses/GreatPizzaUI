@@ -12,6 +12,9 @@ export class ProductComponent<T extends Product> implements OnInit {
   @Input()
   data: Array<T>;
 
+  @Input()
+  title: string;
+
   constructor() { }
 
   ngOnInit() {
