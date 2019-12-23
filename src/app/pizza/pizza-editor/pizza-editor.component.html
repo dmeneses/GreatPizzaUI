@@ -1,0 +1,13 @@
+<form [formGroup]="pizzaForm">
+  <label>
+    Pizza Name:
+    <input type="text" formControlName="name">
+  </label>
+  <label>Toppings:</label>
+  
+  <div *ngFor="let topping of toppings.controls; let i=index">
+    <div [formGroup]="topping">
+      <input formControlName="name" />
+    </div>
+  </div>
+</form>
