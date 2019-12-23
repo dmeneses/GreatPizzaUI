@@ -27,7 +27,8 @@ export class PizzaEditorComponent implements OnInit {
     toppings: this.formBuilder.array([])
   });
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private pizzaService: PizzaService,
     private toppingService: ToppingService,
     private router: Router,
@@ -74,7 +75,7 @@ export class PizzaEditorComponent implements OnInit {
           newToppings[topping.name] = null;
           return newToppings;
         }, {});
-    })
+    });
   }
 
   get toppings() {

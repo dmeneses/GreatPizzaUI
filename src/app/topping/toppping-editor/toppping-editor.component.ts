@@ -21,7 +21,8 @@ export class TopppingEditorComponent implements OnInit {
     name: ''
   });
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private toppingService: ToppingService,
     private router: Router) { }
@@ -42,7 +43,7 @@ export class TopppingEditorComponent implements OnInit {
     )
     .subscribe((topping) => {
       this.toppingForm.patchValue(topping);
-    })
+    });
   }
 
   onSave() {
@@ -58,7 +59,5 @@ export class TopppingEditorComponent implements OnInit {
           .subscribe(() => {});
       }
     }
-    
   }
-
 }

@@ -14,8 +14,8 @@ export class AutocompleteDirective implements AfterViewInit {
   constructor(private elementRef: ElementRef) {}
 
   ngAfterViewInit(): void {
-    this.autocompleteElement = Autocomplete.init(this.elementRef.nativeElement, { 
-      data: this.data, 
+    this.autocompleteElement = Autocomplete.init(this.elementRef.nativeElement, {
+      data: this.data,
       onAutocomplete: (data) => this.autocomplete.emit(data)
     });
   }

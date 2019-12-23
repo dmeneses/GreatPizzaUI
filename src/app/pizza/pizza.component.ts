@@ -13,7 +13,8 @@ export class PizzaComponent implements OnInit {
 
   pizzas: Pizza[] = [];
 
-  constructor(private pizzaService: PizzaService,
+  constructor(
+    private pizzaService: PizzaService,
     private router: Router) { }
 
   ngOnInit() {
