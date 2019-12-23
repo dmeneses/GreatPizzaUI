@@ -23,7 +23,6 @@ export class PizzaEditorComponent implements OnInit {
   newPizzaMode = false;
   selectedTopping = null;
   pizzaForm = this.formBuilder.group({
-    _id: '',
     name: '',
     toppings: this.formBuilder.array([])
   });
@@ -57,11 +56,19 @@ export class PizzaEditorComponent implements OnInit {
     )
     .subscribe(([pizza, toppings]) => {
       this.pizzaForm.patchValue(pizza);
+
+      if (!this.newPizzaMode) {
+        pizza.toppings
+          .forEach((topping) => this.toppings.push(this.formBuilder.group(topping)));
+        this.pizzaForm.get('name').disable();
+      }
+
       this.toppingsById = toppings
         .reduce((newToppings, topping: Topping) => {
           newToppings[topping.name] = topping;
           return newToppings;
         }, {});
+
       this.availableToppings = toppings
         .reduce((newToppings, topping: Topping) => {
           newToppings[topping.name] = null;
@@ -79,14 +86,22 @@ export class PizzaEditorComponent implements OnInit {
   }
 
   onToppingAdd() {
-    this.toppings.push(this.formBuilder.group(this.selectedTopping));
+    if (this.newPizzaMode) {
+      this.toppings.push(this.formBuilder.group(this.selectedTopping));
+    } else {
+      this.pizzaService.addToppingToPizza(this.pizzaId, this.selectedTopping._id)
+        .subscribe(() => {
+          this.toppings.push(this.formBuilder.group(this.selectedTopping));
+        });
+    }
   }
 
   onSave() {
     const pizza = this.pizzaForm.value;
-    console.log(pizza);
+
     if (pizza.name && pizza.name.trim() !== '' &&
       pizza.toppings && pizza.toppings.length > 0) {
+
       this.pizzaService.savePizza(pizza)
         .subscribe(() => {
           this.router.navigate(['/pizzas']);

@@ -17,7 +17,6 @@ export class TopppingEditorComponent implements OnInit {
   toppingId: string;
   newToppingMode = false;
   toppingForm = this.formBuilder.group({
-    _id: '',
     name: ''
   });
 

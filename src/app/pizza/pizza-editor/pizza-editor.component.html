@@ -9,7 +9,6 @@
       </div>
 
       <div class="input-field col s12" *ngIf="availableToppings">
-        <!-- <i class="material-icons prefix">textsms</i> -->
         <input type="text" id="autocomplete-input" class="autocomplete" autocomplete="off"
           appAutocomplete [data]="availableToppings" (autocomplete)="onAutocomplete($event)">
         <label for="autocomplete-input">Add new topping</label>
@@ -25,7 +24,7 @@
         </li>
       </ul>
     </div>
-    <button class="btn right" (click)='onSave()'>Save</button>
+    <button class="btn right" (click)='onSave()' *ngIf="newPizzaMode">Save</button>
   </form>
 </div>
 </div>

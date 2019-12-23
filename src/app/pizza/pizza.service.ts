@@ -27,4 +27,8 @@ export class PizzaService {
   savePizza(pizza: Pizza): Observable<any> {
     return this.http.post<any>(`${this.path}`, pizza);
   }
+
+  addToppingToPizza(pizzaId: string, toppingId: string) {
+    return this.http.put<any>(`${this.path}/${pizzaId}/topping/${toppingId}`, {});
+  }
 }
