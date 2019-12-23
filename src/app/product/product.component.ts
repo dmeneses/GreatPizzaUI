@@ -13,9 +13,11 @@ export class ProductComponent<T extends Product> {
 
   @Input() title: string;
 
-  @Output() edit = new EventEmitter<any>();
+  @Output() edit = new EventEmitter<string>();
 
-  @Output() delete = new EventEmitter<any>();
+  @Output() delete = new EventEmitter<string>();
+
+  @Output() add = new EventEmitter<string>();
 
   onProductEdit(productId: string) {
     this.edit.emit(productId);
@@ -23,5 +25,9 @@ export class ProductComponent<T extends Product> {
 
   onProductDelete(productId: string) {
     this.delete.emit(productId);
+  }
+
+  onProductAdd() {
+    this.add.emit();
   }
 }

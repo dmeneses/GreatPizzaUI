@@ -35,4 +35,8 @@ export class PizzaComponent implements OnInit {
         this.loadPizzas();
       });
   }
+
+  onAdd() {
+    this.router.navigate(['pizza']);
+  }
 }

@@ -9,6 +9,7 @@ import { TopppingEditorComponent } from './topping/toppping-editor/toppping-edit
 const routes: Routes = [
   { path: '', redirectTo: '/pizzas', pathMatch: 'full' },
   { path: 'pizzas', component: PizzaComponent },
+  { path: 'pizza', component: PizzaEditorComponent },
   { path: 'pizzas/:id', component: PizzaEditorComponent },
   { path: 'toppings', component: ToppingComponent },
   { path: 'topping/:id', component: TopppingEditorComponent },

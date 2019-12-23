@@ -23,4 +23,8 @@ export class PizzaService {
   deletePizza(id: string) {
     return this.http.delete<Pizza>(`${this.path}/${id}`);
   }
+
+  savePizza(pizza: Pizza) {
+    return this.http.post<Pizza>(`${this.path}`, pizza);
+  }
 }

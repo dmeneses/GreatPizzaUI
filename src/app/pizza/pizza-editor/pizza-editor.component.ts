@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormArray } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { switchMap } from 'rxjs/operators';
+import { of, forkJoin } from 'rxjs';
 
-import { PizzaService } from '../pizza.service';
 import { Pizza } from 'src/app/shared/models/pizza.model';
-
+import { ToppingService } from 'src/app/topping/topping.service';
+import { PizzaService } from '../pizza.service';
+import { Topping } from 'src/app/shared/models/topping.model';
 
 @Component({
   selector: 'app-pizza-editor',
@@ -16,19 +18,20 @@ import { Pizza } from 'src/app/shared/models/pizza.model';
 export class PizzaEditorComponent implements OnInit {
 
   pizzaId: string;
+  toppingsById = null;
+  availableToppings = null;
+  newPizzaMode = false;
+  selectedTopping = null;
   pizzaForm = this.formBuilder.group({
     _id: '',
     name: '',
-    toppings: this.formBuilder.array([
-      this.formBuilder.group({
-        _id: '',
-        name: ''
-      })
-    ])
+    toppings: this.formBuilder.array([])
   });
 
   constructor(private formBuilder: FormBuilder,
     private pizzaService: PizzaService,
+    private toppingService: ToppingService,
+    private router: Router,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -36,15 +39,58 @@ export class PizzaEditorComponent implements OnInit {
     .pipe(
       switchMap(params => {
         this.pizzaId = params.get('id');
-        return this.pizzaService.getPizza(this.pizzaId);
+        this.newPizzaMode = !this.pizzaId;
+
+        if (this.newPizzaMode) {
+          const pizza = new Pizza();
+          return forkJoin(
+            of(pizza),
+            this.toppingService.getToppings()
+          );
+        } else {
+          return forkJoin(
+            this.pizzaService.getPizza(this.pizzaId),
+            this.toppingService.getToppings()
+          );
+        }
       })
     )
-    .subscribe((pizza: Pizza) => {
-      this.pizzaForm.setValue(pizza);
+    .subscribe(([pizza, toppings]) => {
+      this.pizzaForm.patchValue(pizza);
+      this.toppingsById = toppings
+        .reduce((newToppings, topping: Topping) => {
+          newToppings[topping.name] = topping;
+          return newToppings;
+        }, {});
+      this.availableToppings = toppings
+        .reduce((newToppings, topping: Topping) => {
+          newToppings[topping.name] = null;
+          return newToppings;
+        }, {});
     })
   }
 
   get toppings() {
     return this.pizzaForm.get('toppings') as FormArray;
+  }
+
+  onAutocomplete(autocompletedItem) {
+    this.selectedTopping = this.toppingsById[autocompletedItem];
+  }
+
+  onToppingAdd() {
+    this.toppings.push(this.formBuilder.group(this.selectedTopping));
+  }
+
+  onSave() {
+    const pizza = this.pizzaForm.value;
+    console.log(pizza);
+    if (pizza.name && pizza.name.trim() !== '' &&
+      pizza.toppings && pizza.toppings.length > 0) {
+      this.pizzaService.savePizza(pizza)
+        .subscribe(() => {
+          this.router.navigate(['/pizzas']);
+        });
+    }
   }
 }
