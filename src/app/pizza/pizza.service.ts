@@ -20,11 +20,11 @@ export class PizzaService {
     return this.http.get<Pizza>(`${this.path}/${id}`);
   }
 
-  deletePizza(id: string) {
-    return this.http.delete<Pizza>(`${this.path}/${id}`);
+  deletePizza(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.path}/${id}`);
   }
 
-  savePizza(pizza: Pizza) {
-    return this.http.post<Pizza>(`${this.path}`, pizza);
+  savePizza(pizza: Pizza): Observable<any> {
+    return this.http.post<any>(`${this.path}`, pizza);
   }
 }

@@ -35,4 +35,8 @@ export class ToppingComponent implements OnInit {
       });
   }
 
+  onAdd(id: string) {
+    this.router.navigate(['topping']);
+  }
+
 }

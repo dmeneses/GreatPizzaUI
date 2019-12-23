@@ -20,8 +20,11 @@ export class ToppingService {
     return this.http.get<Topping>(`${this.path}/${id}`);
   }
 
-  deleteTopping(id: string): Observable<Topping> {
-    return this.http.delete<Topping>(`${this.path}/${id}`);
+  deleteTopping(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.path}/${id}`);
   }
 
+  saveTopping(topping: Topping): Observable<any> {
+    return this.http.post<any>(`${this.path}`, topping);
+  }
 }

@@ -12,7 +12,6 @@ import { PizzaEditorComponent } from './pizza/pizza-editor/pizza-editor.componen
 import { TopppingEditorComponent } from './topping/toppping-editor/toppping-editor.component';
 import { AutocompleteDirective } from './shared/directives/autocomplete/autocomplete.directive';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +20,7 @@ import { AutocompleteDirective } from './shared/directives/autocomplete/autocomp
     ToppingComponent,
     PizzaEditorComponent,
     TopppingEditorComponent,
-    AutocompleteDirective
+    AutocompleteDirective,
   ],
   imports: [
     BrowserModule,

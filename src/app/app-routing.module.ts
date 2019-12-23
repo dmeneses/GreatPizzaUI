@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'pizzas/:id', component: PizzaEditorComponent },
   { path: 'toppings', component: ToppingComponent },
   { path: 'topping/:id', component: TopppingEditorComponent },
+  { path: 'topping', component: TopppingEditorComponent },
 ];
 
 @NgModule({
