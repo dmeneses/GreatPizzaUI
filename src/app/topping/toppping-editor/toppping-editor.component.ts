@@ -17,6 +17,7 @@ export class TopppingEditorComponent implements OnInit {
   toppingId: string;
   newToppingMode = false;
   toppingForm = this.formBuilder.group({
+    _id: '',
     name: ''
   });
 
@@ -46,10 +47,18 @@ export class TopppingEditorComponent implements OnInit {
 
   onSave() {
     const topping = this.toppingForm.value;
-    this.toppingService.saveTopping(topping)
-      .subscribe(() => {
-        this.router.navigate(['/toppings']);
-      });
+    if (topping.name && topping.name.trim() !== '') {
+      if (this.newToppingMode) {
+        this.toppingService.saveTopping({ name: topping.name })
+          .subscribe(() => {
+            this.router.navigate(['/toppings']);
+          });
+      } else {
+        this.toppingService.updateTopping(topping)
+          .subscribe(() => {});
+      }
+    }
+    
   }
 
 }

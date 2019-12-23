@@ -27,4 +27,8 @@ export class ToppingService {
   saveTopping(topping: Topping): Observable<any> {
     return this.http.post<any>(`${this.path}`, topping);
   }
+
+  updateTopping(topping: Topping): Observable<any> {
+    return this.http.put<any>(`${this.path}/${topping._id}`, topping);
+  }
 }
