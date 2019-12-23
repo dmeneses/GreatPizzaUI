@@ -11,6 +11,7 @@ import { ToppingComponent } from './topping/topping.component';
 import { PizzaEditorComponent } from './pizza/pizza-editor/pizza-editor.component';
 import { TopppingEditorComponent } from './topping/toppping-editor/toppping-editor.component';
 import { AutocompleteDirective } from './shared/directives/autocomplete/autocomplete.directive';
+import { SidenavDirective } from './shared/directives/sidenav/sidenav.directive';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AutocompleteDirective } from './shared/directives/autocomplete/autocomp
     PizzaEditorComponent,
     TopppingEditorComponent,
     AutocompleteDirective,
+    SidenavDirective
   ],
   imports: [
     BrowserModule,
