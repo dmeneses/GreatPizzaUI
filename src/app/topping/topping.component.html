@@ -1,1 +1,4 @@
-<app-product title="Toppings" [data]="toppings"></app-product>
+<app-product title="Toppings" [data]="toppings"
+  (edit)="onEdit($event)"
+  (delete)="onDelete($event)">
+</app-product>

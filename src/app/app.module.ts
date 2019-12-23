@@ -9,6 +9,7 @@ import { ProductComponent } from './product/product.component';
 import { PizzaComponent } from './pizza/pizza.component';
 import { ToppingComponent } from './topping/topping.component';
 import { PizzaEditorComponent } from './pizza/pizza-editor/pizza-editor.component';
+import { TopppingEditorComponent } from './topping/toppping-editor/toppping-editor.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { PizzaEditorComponent } from './pizza/pizza-editor/pizza-editor.componen
     ProductComponent,
     PizzaComponent,
     ToppingComponent,
-    PizzaEditorComponent
+    PizzaEditorComponent,
+    TopppingEditorComponent
   ],
   imports: [
     BrowserModule,
