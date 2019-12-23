@@ -28,7 +28,11 @@ export class PizzaService {
     return this.http.post<any>(`${this.path}`, pizza);
   }
 
-  addToppingToPizza(pizzaId: string, toppingId: string) {
+  addToppingToPizza(pizzaId: string, toppingId: string): Observable<any> {
     return this.http.put<any>(`${this.path}/${pizzaId}/topping/${toppingId}`, {});
+  }
+
+  deleteToppingFromPizza(pizzaId: string, toppingId: any): Observable<any>  {
+    return this.http.delete(`${this.path}/${pizzaId}/topping/${toppingId}`);
   }
 }

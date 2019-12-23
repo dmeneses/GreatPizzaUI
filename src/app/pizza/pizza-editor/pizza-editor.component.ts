@@ -108,4 +108,10 @@ export class PizzaEditorComponent implements OnInit {
         });
     }
   }
+
+  onDelete(topping: Topping, index: number) {
+    this.toppings.controls.splice(index, 1);
+    this.pizzaService.deleteToppingFromPizza(this.pizzaId, topping._id)
+      .subscribe(() => {});
+  }
 }

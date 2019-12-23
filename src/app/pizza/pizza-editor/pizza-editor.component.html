@@ -17,10 +17,11 @@
           <span>Add</span>
         </div>
       </div>
-
+      <label>Selected toppings</label>
       <ul class="collection" *ngIf="toppings.controls.length > 0">
         <li class="collection-item" *ngFor="let topping of toppings.controls; let i=index" [formGroup]="topping">
           {{topping.value.name}}
+          <span class="right" (click)="onDelete(topping.value, i)"><i class="far fa-trash-alt"></i></span>
         </li>
       </ul>
     </div>
