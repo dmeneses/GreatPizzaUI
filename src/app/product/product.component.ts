@@ -15,7 +15,13 @@ export class ProductComponent<T extends Product> {
 
   @Output() edit = new EventEmitter<any>();
 
+  @Output() delete = new EventEmitter<any>();
+
   onProductEdit(productId: string) {
     this.edit.emit(productId);
+  }
+
+  onProductDelete(productId: string) {
+    this.delete.emit(productId);
   }
 }

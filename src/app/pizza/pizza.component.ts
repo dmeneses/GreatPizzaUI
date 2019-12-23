@@ -17,11 +17,22 @@ export class PizzaComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    this.loadPizzas();
+  }
+
+  loadPizzas() {
     this.pizzaService.getPizzas()
       .subscribe((pizzas: Pizza[]) => this.pizzas = pizzas);
   }
 
   onEdit(id: string) {
     this.router.navigate(['pizzas', id]);
+  }
+
+  onDelete(id: string) {
+    this.pizzaService.deletePizza(id)
+      .subscribe(() => {
+        this.loadPizzas();
+      });
   }
 }

@@ -19,4 +19,8 @@ export class PizzaService {
   getPizza(id: string): Observable<Pizza> {
     return this.http.get<Pizza>(`${this.path}/${id}`);
   }
+
+  deletePizza(id: string) {
+    return this.http.delete<Pizza>(`${this.path}/${id}`);
+  }
 }
